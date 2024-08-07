@@ -1,7 +1,7 @@
 
 
 resource "aws_ecs_cluster" "main" {
-  name = "${var.name}-cluster"
+  name = "${var.name}-demo-cluster"
 
   configuration {
     execute_command_configuration {
@@ -15,7 +15,7 @@ resource "aws_ecs_cluster" "main" {
 }
 
 resource "aws_ecs_task_definition" "main" {
-  family                   = "${var.name}-ecs-family"
+  family                   = "${var.name}-demo-ecs-task-def"
   task_role_arn            = aws_iam_role.ecs_task_role.arn
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   network_mode             = "awsvpc"
@@ -29,17 +29,13 @@ resource "aws_ecs_task_definition" "main" {
 
   container_definitions = jsonencode([
     {
-      name      = "${var.name}-container"
-      image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.ap-southeast-2.amazonaws.com/image-processor-demo:latest"
+      name      = "${var.name}-demo-container"
+      image     = "${aws_ecr_repository.demo.repository_url}:latest"
       essential = true
       environment = [
         {
           "name" : "TZ",
           "value" : "Pacific/Auckland"
-        },
-        {
-          "name" : "SQS_URL",
-          "value" : "https://dummyurl.co.nz"
         },
       ],
       cpu    = var.container_cpu
@@ -64,15 +60,13 @@ resource "aws_ecs_task_definition" "main" {
           "awslogs-region"        = var.region
         }
       }
-
     }
   ])
-
 }
 
 resource "aws_ecs_service" "main" {
 
-  name                   = "${var.name}-service"
+  name                   = "${var.name}-demo-service"
   cluster                = aws_ecs_cluster.main.id
   task_definition        = aws_ecs_task_definition.main.arn
   desired_count          = var.service_desired_count
