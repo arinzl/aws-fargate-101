@@ -5,9 +5,9 @@ variable "region" {
 }
 
 variable "name" {
-  description = "the name of your stack, e.g. \"netbox\""
+  description = "the name of your stack, e.g. \"fargate-demo\""
   type        = string
-  default     = "demo"
+  default     = "fargate"
 }
 
 variable "container_port" {

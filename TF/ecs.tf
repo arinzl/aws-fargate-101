@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "main" {
   container_definitions = jsonencode([
     {
       name      = "${var.name}-container"
-      image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.ap-southeast-2.amazonaws.com/${var.name}-basic:latest"
+      image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.ap-southeast-2.amazonaws.com/image-processor-demo:latest"
       essential = true
       environment = [
         {

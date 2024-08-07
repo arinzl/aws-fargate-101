@@ -17,11 +17,17 @@ Please see https://devbuildit.com/2024/06/04/monitoring-amazon-lambda-functions 
 - AWS Account
 - Terraform CLI installed with access to your target AWS account (via temporary Indentity centre credentials or AWS IAM access keys)
 
-## Deployment
-- Clone repo into a source folder
-- swith to TF folder
+## Deployment - TF
+- Clone this github repo into a source folder
+- switch to TF subfolder in github repo
+- Setup AWS credentials
 - Update file variable with default region (otherwise this will deploy to ap-southeast-2 by default) in file terraform.tfvars
 - Consider changing application name in file variables.tf (default will work fine)
 - Run command 'Terraform init' in source folder
 - Run command 'Terraform plan' in source folder
 - Run command 'Terraform apply' in source folder and approve apply
+
+## Deployment - TF
+- change to TF subfolder in Github repo
+- setup AWS credentials
+- run deploy.sh
