@@ -1,17 +1,14 @@
 # Overview  aws-fargate-101
 
-Please see blog site https://devbuildit.com/2024/06/04/monitoring-amazon-lambda-functions/ for detailed explaination of this repo contents.
+Please see blog site https://devbuildit.com/2024/08/13/aws-fargate-101/ for detailed explaination of this repo contents.
 
-This repo (and associated blog) will help you access the shell prompt on Fargate containers
+This repo (and associated blog post) will help you to access your operating system shell prompt within a AWS Fargate containers.
 
-There two parts to repo:
-  1) Docker file creation and upload
-  2) Terraform code to deploy a Fargate Container and access its command shell
-
+There are two parts to this repo:
+  1) Docker file creation and upload (contained within the Docker subflolder)
+  2) Terraform code to deploy a Fargate Container and access its command shell (contained within the TF subflolder)
 
 # Installation  
-
-Please see https://devbuildit.com/2024/06/04/monitoring-amazon-lambda-functions for detailed explaination.
 
 ## Requirements: ##
 - AWS Account
@@ -27,7 +24,8 @@ Please see https://devbuildit.com/2024/06/04/monitoring-amazon-lambda-functions 
 - Run command 'Terraform plan' in source folder
 - Run command 'Terraform apply' in source folder and approve apply
 
-## Deployment - TF
-- change to TF subfolder in Github repo
+## Deployment - Docker Image
+- change to Docker subfolder within the Github repo
 - setup AWS credentials
+- Update variables in deploy.sh script: AWS region, AWS ECR name; Cocker image name.
 - run deploy.sh
